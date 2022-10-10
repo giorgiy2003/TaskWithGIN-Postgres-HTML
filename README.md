@@ -1,2 +1,2 @@
-# TaskWithGINFramework
+# TaskWithGin-Postgres-HTML
 Данная программа была разработана с ипользованием базы данных PostgreSQL, фреймворком от GIN, а также использованием html-шаблонов.
