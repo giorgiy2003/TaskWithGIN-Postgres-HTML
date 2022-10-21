@@ -1,6 +1,7 @@
 package Handler
 
 import (
+	"fmt"
 	Logic "myapp/internal/logic"
 	Model "myapp/internal/model"
 	"net/http"
@@ -16,7 +17,8 @@ func Form_handler_PostPerson(c *gin.Context) {
 	newPerson.LastName = c.Request.FormValue("lastName")
 	err := Logic.Create(newPerson)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.IndentedJSON(http.StatusBadRequest, fmt.Sprint(err))
+		return
 	}
 	c.IndentedJSON(http.StatusCreated, newPerson)
 }
@@ -24,17 +26,18 @@ func Form_handler_PostPerson(c *gin.Context) {
 func Form_handler_GetPersons(c *gin.Context) {
 	persons, err := Logic.Read()
 	if err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.IndentedJSON(http.StatusBadRequest, fmt.Sprint(err))
+		return
 	}
 	c.IndentedJSON(http.StatusOK, persons)
 }
 
 func Form_handler_GetById(c *gin.Context) {
-
 	id := c.Request.FormValue("id")
 	persons, err := Logic.ReadOne(id)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.IndentedJSON(http.StatusBadRequest, fmt.Sprint(err))
+		return
 	}
 	c.IndentedJSON(http.StatusOK, persons)
 }
@@ -43,9 +46,10 @@ func Form_handler_DeleteById(c *gin.Context) {
 	id := c.Request.FormValue("id")
 	err := Logic.Delete(id)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.IndentedJSON(http.StatusBadRequest, fmt.Sprint(err))
+		return
 	}
-	c.IndentedJSON(http.StatusOK, Model.Person{})
+	c.IndentedJSON(http.StatusOK, "Запись удалена")
 }
 
 func Form_handler_UpdatePersonById(c *gin.Context) {
@@ -57,9 +61,10 @@ func Form_handler_UpdatePersonById(c *gin.Context) {
 	newPerson.LastName = c.Request.FormValue("lastName")
 	err := Logic.Update(newPerson, newPerson.Id)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.IndentedJSON(http.StatusBadRequest, fmt.Sprint(err))
+		return
 	}
-	c.IndentedJSON(http.StatusOK, newPerson)
+	c.IndentedJSON(http.StatusOK, "Запись обновлена")
 }
 
 func MainForm(c *gin.Context) {

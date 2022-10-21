@@ -21,10 +21,10 @@ func main() {
 	router.GET("/Remove", Handler.Remove)
 	router.GET("/Edit", Handler.Edit)
 
-	router.GET("/form_handler_GetPersons", Handler.Form_handler_GetPersons)
-	router.GET("/form_handler_GetById", Handler.Form_handler_GetById)
-	router.POST("/form_handler_PostPerson", Handler.Form_handler_PostPerson)
-	router.GET("/form_handler_DeleteById", Handler.Form_handler_DeleteById)
-	router.GET("/form_handler_UpdatePersonById", Handler.Form_handler_UpdatePersonById)
+	router.GET("/Form_handler_GetPersons", Handler.Form_handler_GetPersons)
+	router.GET("/Form_handler_GetById", Handler.Form_handler_GetById)
+	router.POST("/Form_handler_PostPerson", Handler.Form_handler_PostPerson)
+	router.GET("/Form_handler_DeleteById", Handler.Form_handler_DeleteById)
+	router.GET("/Form_handler_UpdatePersonById", Handler.Form_handler_UpdatePersonById)
 	_ = router.Run("localhost:8080")
 }
