@@ -54,12 +54,12 @@ func Form_handler_DeleteById(c *gin.Context) {
 
 func Form_handler_UpdatePersonById(c *gin.Context) {
 	var newPerson Model.Person
-	newPerson.Id = c.Request.FormValue("id")
+	person_id := c.Request.FormValue("id")
 	newPerson.Email = c.Request.FormValue("email")
 	newPerson.Phone = c.Request.FormValue("phone")
 	newPerson.FirstName = c.Request.FormValue("firstName")
 	newPerson.LastName = c.Request.FormValue("lastName")
-	err := Logic.Update(newPerson, newPerson.Id)
+	err := Logic.Update(newPerson, person_id)
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, fmt.Sprint(err))
 		return
