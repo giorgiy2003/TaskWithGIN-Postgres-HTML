@@ -29,12 +29,11 @@ func OpenTable() error {
 	}
 	table, err := Connection.Query(`CREATE TABLE IF NOT EXISTS person
 	(
-		"person_id" integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+		"person_id" serial PRIMARY KEY,
 		"person_email" character varying(32)  NOT NULL,
 		"person_phone" character varying(32)  NOT NULL,
 		"person_firstName" character varying(32)  NOT NULL,
-		"person_lastName" character varying(32)  NOT NULL,
-		PRIMARY KEY (person_id)
+		"person_lastName" character varying(32)  NOT NULL
 	)`)
 	if err != nil {
 		return err
